@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجري - المتجر الإلكتروني</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1>🛍️ متجري</h1>
+            </div>
+            <div class="navbar-menu">
+                <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن المنتج...">
+                <button class="cart-btn" onclick="toggleCart()">
+                    🛒 السلة <span id="cartCount" class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Filters -->
+        <div class="filters">
+            <h3>التصنيفات</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterProducts('all')">الكل</button>
+                <button class="filter-btn" onclick="filterProducts('electronics')">إلكترونيات</button>
+                <button class="filter-btn" onclick="filterProducts('fashion')">ملابس</button>
+                <button class="filter-btn" onclick="filterProducts('home')">منزل</button>
+                <button class="filter-btn" onclick="filterProducts('books')">كتب</button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-section">
+            <h2>المنتجات</h2>
+            <div id="productsGrid" class="products-grid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>السلة</h2>
+            <button onclick="toggleCart()" class="close-btn">✕</button>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <!-- Cart items will be displayed here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>الإجمالي:</strong>
+                <span id="totalPrice">0 ريال</span>
+            </div>
+            <button class="btn btn-primary" onclick="checkout()">إتمام الطلب</button>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="صورة المنتج" class="modal-image">
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    <p class="modal-price"><strong id="modalPrice"></strong></p>
+                    <div class="quantity-control">
+                        <button onclick="decreaseQuantity()">-</button>
+                        <input type="number" id="quantityInput" value="1" min="1">
+                        <button onclick="increaseQuantity()">+</button>
+                    </div>
+                    <button class="btn btn-primary btn-large" onclick="addToCart()">أضف إلى السلة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel">
+        <button class="admin-toggle" onclick="toggleAdmin()">⚙️ إدارة</button>
+        <div id="adminPanel" class="admin-content">
+            <h3>لوحة الإدارة</h3>
+            <div class="admin-section">
+                <h4>إضافة منتج جديد</h4>
+                <input type="text" id="adminProductName" placeholder="اسم المنتج">
+                <input type="number" id="adminProductPrice" placeholder="السعر">
+                <input type="text" id="adminProductImage" placeholder="رابط الصورة">
+                <input type="text" id="adminProductCategory" placeholder="التصنيف">
+                <textarea id="adminProductDescription" placeholder="الوصف"></textarea>
+                <button onclick="addProductAdmin()" class="btn btn-success">إضافة المنتج</button>
+            </div>
+            <div class="admin-section">
+                <h4>رقم الواتساب</h4>
+                <input type="text" id="whatsappNumber" placeholder="مثال: +966501234567">
+                <button onclick="saveWhatsappNumber()" class="btn btn-success">حفظ</button>
+            </div>
+            <div class="admin-section">
+                <h4>الألوان</h4>
+                <label>اللون الأساسي: <input type="color" id="primaryColor" value="#1e40af"></label>
+                <label>اللون الثانوي: <input type="color" id="secondaryColor" value="#d4af37"></label>
+                <button onclick="saveColors()" class="btn btn-success">حفظ الألوان</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
